@@ -1,0 +1,3 @@
+proxy_port: 8080
+target_url: "https://jsonplaceholder.typicode.com"
+log_file: "requests.log"
