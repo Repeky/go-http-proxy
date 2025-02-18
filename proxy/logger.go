@@ -15,14 +15,12 @@ type WriterHook struct {
 }
 
 func InitLogger(filename string) {
-	rootDir, err := filepath.Abs("../../")
+	configPath, err := filepath.Abs(filename)
 	if err != nil {
 		logrus.Fatalf("Ошибка определения корневой директории проекта: %v", err)
 	}
 
-	logFilePath := filepath.Join(rootDir, filename)
-
-	file, err := os.OpenFile(logFilePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile(configPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		logrus.Fatalf("Ошибка открытия лог-файла: %v", err)
 	}

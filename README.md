@@ -26,7 +26,7 @@ go mod tidy
 
 ### 3. Запустите сервер
 ```bash
-go run main.go
+go run .\cmd\go-http-proxy\main.go
 ```
 
 ### 4. Отправьте тестовый запрос

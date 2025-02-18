@@ -18,7 +18,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Ошибка загрузки конфига: %v", err)
 	}
-
 	proxy.InitLogger(config.LogFile)
 	defer proxy.CloseLogger()
 
