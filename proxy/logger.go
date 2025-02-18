@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var logger = logrus.New()
@@ -47,6 +48,16 @@ func InitLogger(filename string) {
 		Formatter: fileFormatter,
 	})
 
+	// Устанавливаем уровень логирования:
+	/*
+		PanicLevel - Логирует и вызывает panic()
+		FatalLevel - Логирует и завершает программу (os.Exit(1))
+		ErrorLevel - Ошибки, требующие внимания
+		WarnLevel  - Предупреждения о возможных проблемах
+		InfoLevel  - Обычные события работы приложения
+		DebugLevel - Подробная отладка
+		TraceLevel - Детальный уровень логов, глубже Debug
+	*/
 	logger.SetLevel(logrus.DebugLevel)
 
 	logger.Info("Логирование инициализировано")
@@ -72,7 +83,7 @@ func LogRequest(method, url string, headers map[string][]string) {
 	}).Info("Новый HTTP-запрос")
 
 	for k, v := range headers {
-		logger.WithField(k, v).Debug("Заголовок запроса")
+		logger.Debugf("Заголовок запроса: %s=%s", k, strings.Join(v, ", "))
 	}
 }
 
